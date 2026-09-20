@@ -131,7 +131,7 @@ function App() {
 
       <section className="marquee" aria-label="Cafe values">
         <div className="marquee-track">
-          <span>GOOD FOOD</span><i>✳</i><span>GOOD ENERGY</span><i>✳</i><span>GOOD COMPANY</span><i>✳</i><span>GOOD FOOD</span><i>✳</i><span>GOOD ENERGY</span><i>✳</i><span>GOOD COMPANY</span>
+          <span>Fresh Ingredients</span><i>✳</i><span>High Protein</span><i>✳</i><span>Real Flavor</span><i>✳</i><span>Fresh Ingredients</span><i>✳</i><span>High Protein</span><i>✳</i><span>Real Flavor</span>
         </div>
       </section>
 
