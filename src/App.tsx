@@ -139,10 +139,10 @@ function App() {
         <div className="container delivery-inner">
           <span className="delivery-label">Now serving on</span>
           <div className="delivery-logos">
-            <a href="https://noonfood.com" target="_blank" rel="noopener noreferrer" className="delivery-logo" aria-label="Order on Noon">
+            <a href="https://food.noon.com/uae-en/" target="_blank" rel="noopener noreferrer" className="delivery-logo" aria-label="Order on Noon">
               <img className="delivery-brand-image" src="/images/image.png" alt="noon food" />
             </a>
-            <a href="https://www.keeta.com" target="_blank" rel="noopener noreferrer" className="delivery-logo" aria-label="Order on Keeta">
+            <a href="https://www.keeta-global.com/AE/en" target="_blank" rel="noopener noreferrer" className="delivery-logo" aria-label="Order on Keeta">
               <img className="delivery-brand-image" src="/images/image copy.png" alt="Keeta" />
             </a>
           </div>
