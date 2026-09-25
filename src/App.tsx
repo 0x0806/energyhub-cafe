@@ -135,6 +135,20 @@ function App() {
         </div>
       </section>
 
+      <section className="delivery-banner" aria-label="Delivery partners">
+        <div className="container delivery-inner">
+          <span className="delivery-label">Now serving on</span>
+          <div className="delivery-logos">
+            <a href="https://noonfood.com" target="_blank" rel="noopener noreferrer" className="delivery-logo" aria-label="Order on Noon">
+              <img className="delivery-brand-image" src="/images/image.png" alt="noon food" />
+            </a>
+            <a href="https://www.keeta.com" target="_blank" rel="noopener noreferrer" className="delivery-logo" aria-label="Order on Keeta">
+              <img className="delivery-brand-image" src="/images/image copy.png" alt="Keeta" />
+            </a>
+          </div>
+        </div>
+      </section>
+
       <section className="intro-section container" id="story">
         <div className="section-kicker">01 / The Energy Hub feeling</div>
         <div className="intro-grid">
