@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://energyhubcafe.ae/</loc>
+    <lastmod>2026-09-29</lastmod>
+    <image:image>
+      <image:loc>https://energyhubcafe.ae/images/Energy_Hub_Logo-01%20copy.png</image:loc>
+      <image:title>Energy Hub Cafe logo</image:title>
+      <image:caption>Official logo of Energy Hub Cafe — healthy high-protein cafe in Al Nahda, Sharjah</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://energyhubcafe.ae/images/1.jpg</image:loc>
+      <image:title>Energy Hub Cafe menu — breakfast, pasta and signatures</image:title>
+      <image:caption>Menu board showing breakfast, pasta, noodles, South Indian dishes and signature meals at Energy Hub Cafe</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://energyhubcafe.ae/images/2.jpg</image:loc>
+      <image:title>Energy Hub Cafe menu — protein meals and fresh juices</image:title>
+      <image:caption>Menu board showing high-protein meals, fresh juices and cafe favourites at Energy Hub Cafe</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://energyhubcafe.ae/images/3.jpg</image:loc>
+      <image:title>Energy Hub Cafe menu — bites, burgers and desserts</image:title>
+      <image:caption>Menu board showing bites, burgers, fries, desserts and snacks at Energy Hub Cafe</image:caption>
+    </image:image>
+  </url>
+</urlset>

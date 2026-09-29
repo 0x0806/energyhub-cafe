@@ -1,0 +1,18 @@
+{
+  "name": "Energy Hub Cafe",
+  "short_name": "Energy Hub",
+  "description": "Healthy high-protein cafe in Al Nahda, Sharjah. Dine in or order home delivery.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f4f1e9",
+  "theme_color": "#292b27",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/images/Energy_Hub_Logo-01 copy.png",
+      "sizes": "3893x3828",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
