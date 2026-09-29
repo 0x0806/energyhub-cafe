@@ -32,21 +32,22 @@ const CAFE = {
   whatsapp: '971507250627',
   whatsappUrl: 'https://wa.me/971507250627',
   mapsQuery: 'Energy+Hub+Cafe+Al+Tayer+Tower+Al+Nahda+Sharjah',
+  noonUrl: 'https://food.noon.com/uae-en/outlet/NRGYHB5ASR/',
 };
 
 const menuBoards = [
-  { src: '/images/MENU1 copy.jpeg', label: 'Protein & fresh juices', alt: 'Energy Hub Cafe menu board showing protein meals and fresh juices' },
-  { src: '/images/MENU2 copy.jpeg', label: 'Bites, burgers & sweet finishes', alt: 'Energy Hub Cafe menu board showing bites, burgers and desserts' },
-  { src: '/images/MENU3 copy.jpeg', label: 'Breakfast, pasta & signatures', alt: 'Energy Hub Cafe menu board showing breakfast, pasta and signature dishes' },
+  { src: '/images/2.jpg', label: 'Protein meals & fresh juices', alt: 'Energy Hub Cafe final menu board showing high-protein meals, fresh juices and cafe favourites' },
+  { src: '/images/3.jpg', label: 'Bites, burgers & desserts', alt: 'Energy Hub Cafe final menu board showing bites, burgers, fries, desserts and snacks' },
+  { src: '/images/1.jpg', label: 'Breakfast, pasta & signatures', alt: 'Energy Hub Cafe final menu board showing breakfast, pasta, noodles, South Indian dishes and signature meals' },
 ];
 
 const categories = [
   { name: 'High-protein meals', detail: 'Chicken, fish and vegetarian dishes built to fuel.', icon: Dumbbell },
-  { name: 'Fresh salads & bowls', detail: 'Wholesome protein bowls and crisp, vibrant greens.', icon: Salad },
-  { name: 'Shakes & fresh juices', detail: 'Pre-workout, post-workout and fruit-forward refreshment.', icon: GlassWater },
-  { name: 'Café classics', detail: 'Pizza, pasta, sandwiches and everyday favourites.', icon: Pizza },
-  { name: 'Desserts & snacks', detail: 'Delectable finishes and traditional snacks.', icon: Utensils },
-  { name: 'Fitness fuel', detail: 'Every option crafted for the way you move.', icon: Zap },
+  { name: 'Salads & protein bowls', detail: 'Wholesome bowls and crisp, vibrant greens.', icon: Salad },
+  { name: 'Shakes & fresh juices', detail: 'Protein shakes, smoothies and refreshing juices.', icon: GlassWater },
+  { name: 'Breakfast & South Indian', detail: 'Breakfast favourites, dosas and hearty starts.', icon: Utensils },
+  { name: 'Pizza, pasta & burgers', detail: 'Café classics, burgers, fries, pasta and noodles.', icon: Pizza },
+  { name: 'Desserts & snacks', detail: 'Cakes, sweet finishes and traditional snacks.', icon: Sparkles },
 ];
 
 const offers = [
@@ -104,7 +105,7 @@ function App() {
         <div className="hero-copy">
           <div className="eyebrow"><span className="eyebrow-line" /> Energy for every version of you</div>
           <h1>Eat well.<br /><em>Live fully.</em></h1>
-          <p className="hero-intro">Experience the ultimate fusion of health and flavor. Inside New Life Style Way Gym, we serve food that nourishes and delights — from high-protein meals to fresh juices and café classics.</p>
+          <p className="hero-intro">Experience the ultimate fusion of health and flavor in Al Nahda, Sharjah. Inside New Life Style Way Gym, we serve food that nourishes and delights — from high-protein meals and protein bowls to fresh juices, shakes, breakfast, South Indian dishes and café classics. Dine in or order home delivery.</p>
           <div className="hero-actions">
             <button className="button button-primary" onClick={() => scrollTo('menu')}>Discover the menu <ArrowRight size={17} /></button>
             <a className="button button-whatsapp" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer">
@@ -121,8 +122,8 @@ function App() {
           <div className="sun-disc" />
           <div className="hero-ring hero-ring-one" />
           <div className="hero-ring hero-ring-two" />
-          <div className="art-card art-card-back"><img src="/images/MENU2 copy.jpeg" alt={menuBoards[1].alt} loading="lazy" /></div>
-          <div className="art-card art-card-front"><img src="/images/MENU1 copy.jpeg" alt={menuBoards[0].alt} /></div>
+          <div className="art-card art-card-back"><img src="/images/3.jpg" alt={menuBoards[1].alt} loading="lazy" /></div>
+          <div className="art-card art-card-front"><img src="/images/2.jpg" alt={menuBoards[0].alt} /></div>
           <div className="floating-label label-top"><Zap size={15} fill="currentColor" /> High protein</div>
           <div className="floating-label label-bottom">Freshly made <span>↗</span></div>
           <div className="grain grain-hero" />
@@ -135,17 +136,24 @@ function App() {
         </div>
       </section>
 
-      <section className="delivery-banner" aria-label="Delivery partners">
+      <section className="delivery-banner" aria-label="Energy Hub Cafe home delivery options">
         <div className="container delivery-inner">
-          <span className="delivery-label">Now serving on</span>
+          <div className="delivery-copy">
+            <span className="delivery-label">Now serving on</span>
+            <strong>Home delivery available</strong>
+          </div>
           <div className="delivery-logos">
-            <a href="https://food.noon.com/uae-en/" target="_blank" rel="noopener noreferrer" className="delivery-logo" aria-label="Order on Noon">
+            <a href={CAFE.noonUrl} target="_blank" rel="noopener noreferrer" className="delivery-logo" aria-label="Order Energy Hub Cafe on noon food">
               <img className="delivery-brand-image" src="/images/image.png" alt="noon food" />
             </a>
-            <a href="https://www.keeta-global.com/AE/en" target="_blank" rel="noopener noreferrer" className="delivery-logo" aria-label="Order on Keeta">
+            <a href="https://www.keeta.com" target="_blank" rel="noopener noreferrer" className="delivery-logo" aria-label="Order Energy Hub Cafe on Keeta">
               <img className="delivery-brand-image" src="/images/image copy.png" alt="Keeta" />
             </a>
+            <a href="https://www.talabat.com/uae" target="_blank" rel="noopener noreferrer" className="delivery-logo delivery-logo-talabat" aria-label="Order Energy Hub Cafe on Talabat">
+              <img className="delivery-brand-image" src="/images/image copy 2.png" alt="Talabat" />
+            </a>
           </div>
+          <p className="delivery-note">Order your favourite healthy meals, protein bowls, fresh juices and café classics for delivery.</p>
         </div>
       </section>
 
@@ -154,8 +162,8 @@ function App() {
         <div className="intro-grid">
           <h2>Where health<br /><em>meets flavor.</em></h2>
           <div className="intro-copy">
-            <p>Conveniently located within the New Life Style Way Gym, our menu is thoughtfully crafted to nourish and delight. From high-protein meals and fresh salads to wholesome protein bowls, we offer a diverse range of options including chicken, fish, and vegetarian dishes.</p>
-            <p>Refresh yourself with our selection of protein shakes, pre- and post-workout drinks, or fresh juices. We also serve café classics like pizza, pasta, and sandwiches, alongside a tempting array of delectable desserts and traditional snacks.</p>
+            <p>Conveniently located within the New Life Style Way Gym, our final menu is thoughtfully crafted to nourish and delight. From high-protein meals and fresh salads to wholesome protein bowls, we offer chicken, fish and vegetarian dishes in Al Nahda, Sharjah.</p>
+            <p>Refresh yourself with protein shakes, smoothies, pre- and post-workout drinks and fresh juices. You will also find breakfast, South Indian favourites, pizza, pasta, noodles, burgers, sandwiches, fries, cakes, desserts and traditional snacks.</p>
             <button className="underlined-button" onClick={() => scrollTo('visit')}>Find your way here <ArrowRight size={16} /></button>
           </div>
         </div>
@@ -210,7 +218,7 @@ function App() {
             <div className="feature-copy">
               <span className="feature-number">0{activeBoard + 1}</span>
               <h3>{menuBoards[activeBoard].label}</h3>
-              <p>Explore the full spread — high-protein meals, fresh salads, protein bowls, shakes, juices, pizza, pasta, sandwiches, desserts and traditional snacks.</p>
+              <p>Explore the final menu — high-protein meals, salads, protein bowls, shakes, juices, breakfast, South Indian dishes, pizza, pasta, noodles, burgers, sandwiches, fries, cakes, desserts and traditional snacks.</p>
               <div className="feature-actions">
                 <button className="button button-light" onClick={() => setActiveBoard((activeBoard + 1) % menuBoards.length)}>Next board <ArrowRight size={17} /></button>
                 <a className="button button-whatsapp-dark" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer">
@@ -219,7 +227,7 @@ function App() {
               </div>
             </div>
             <div className="feature-image">
-              <img src={menuBoards[activeBoard].src} alt={menuBoards[activeBoard].alt} />
+              <img src={menuBoards[activeBoard].src} alt={menuBoards[activeBoard].alt} loading="lazy" />
               <div className="image-caption">{menuBoards[activeBoard].label}<span>0{activeBoard + 1} / 03</span></div>
             </div>
           </div>
@@ -276,10 +284,15 @@ function App() {
                 <strong><Phone size={13} /> Call us</strong>
                 <span>{CAFE.phone}</span>
               </div>
+              <div>
+                <strong><Clock3 size={13} /> Open daily</strong>
+                <span>6:00 AM – 11:00 PM</span>
+              </div>
             </div>
             <div className="visit-actions">
               <a className="button button-light" href={`https://www.google.com/maps/search/?api=1&query=${CAFE.mapsQuery}`} target="_blank" rel="noopener noreferrer">Get directions <ArrowRight size={17} /></a>
               <a className="button button-whatsapp" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle size={16} /> Order on WhatsApp</a>
+              <a className="button button-dark-outline" href={CAFE.noonUrl} target="_blank" rel="noopener noreferrer">Order for delivery <ArrowRight size={16} /></a>
               <a className="button button-ghost" href={`tel:${CAFE.phoneIntl}`}>Call now <Phone size={15} /></a>
             </div>
           </div>
@@ -308,15 +321,36 @@ function App() {
             <div>
               <span>Order & follow</span>
               <a href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle size={14} /> WhatsApp order</a>
+              <a href={CAFE.noonUrl} target="_blank" rel="noopener noreferrer"><ArrowRight size={14} /> Home delivery</a>
               <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><Instagram size={15} /> Instagram</a>
             </div>
           </div>
         </div>
         <div className="container footer-bar">
-          <span>© {new Date().getFullYear()} Energy Hub Cafe. All rights reserved.</span>
+          <span>© {new Date().getFullYear()} Energy Hub Cafe — Healthy High-Protein Cafe in Al Nahda, Sharjah. All rights reserved.</span>
           <button onClick={() => scrollTo('top')} className="back-to-top">Back to top <ArrowUp size={15} /></button>
         </div>
       </footer>
+
+      <section className="seo-content" aria-label="About Energy Hub Cafe">
+        <h2>Energy Hub Cafe — Healthy Cafe in Al Nahda, Sharjah</h2>
+        <p>
+          Energy Hub Cafe is a healthy high-protein cafe located in Al Nahda, Sharjah, inside New Life Style Way Gym.
+          We serve high-protein meals, protein bowls, fresh salads, protein shakes, smoothies, fresh juices,
+          breakfast, South Indian dishes including dosa, pizza, pasta, noodles, burgers, sandwiches, fries, cakes,
+          desserts and traditional snacks. Whether you are looking for a post-workout meal, a healthy lunch in
+          Sharjah, or a casual cafe near Al Nahda, Energy Hub Cafe has something for everyone.
+        </p>
+        <p>
+          We offer dine-in, takeaway and home delivery across Sharjah through noon food, Keeta and Talabat.
+          You can also order directly on WhatsApp. Our best seller is the 14 AED Power Combo — a high-protein
+          meal pairing perfect for training days. Open daily from 6:00 AM to 11:00 PM.
+        </p>
+        <p>
+          Visit us at Al Tayer Tower, G Floor, Shop 5, 19 Street, Al Nahda, Sharjah, UAE.
+          Call +971 6 742 3253 or WhatsApp +971 50 725 0627 to order.
+        </p>
+      </section>
     </main>
   );
 }

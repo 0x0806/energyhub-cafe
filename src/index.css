@@ -73,6 +73,8 @@ img { display: block; }
 .button-light:hover { background: var(--lime); box-shadow: 0 10px 28px rgba(166, 204, 19, .28); }
 .button-ghost { background: transparent; color: #f8f7ef; border: 1px solid rgba(248, 247, 239, .4); }
 .button-ghost:hover { background: rgba(248, 247, 239, .12); border-color: #f8f7ef; }
+.button-dark-outline { background: transparent; color: #f8f7ef; border: 1px solid rgba(248, 247, 239, .4); }
+.button-dark-outline:hover { background: rgba(248, 247, 239, .12); border-color: #f8f7ef; }
 .text-button, .underlined-button { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #44473f; font-size: 11px; font-weight: 800; }
 
 /* ---------- Hero ---------- */
@@ -122,15 +124,18 @@ h1 em, h2 em { font-family: 'Playfair Display', serif; font-weight: 600; color: 
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  gap: 18px 32px;
   flex-wrap: wrap;
 }
+.delivery-copy { display: grid; gap: 7px; text-align: right; }
+.delivery-copy strong { color: var(--charcoal); font-size: 12px; letter-spacing: -.01em; }
 .delivery-label {
   font: 500 11px 'DM Mono', monospace;
   text-transform: uppercase;
   letter-spacing: .14em;
   color: var(--stone);
 }
+.delivery-note { width: 100%; color: var(--stone); font-size: 11px; line-height: 1.6; text-align: center; margin: 2px 0 0; }
 .delivery-logos {
   display: flex;
   align-items: center;
@@ -159,6 +164,8 @@ h1 em, h2 em { font-family: 'Playfair Display', serif; font-weight: 600; color: 
   height: 52px;
   object-fit: contain;
 }
+.delivery-logo-talabat { background: #ff5a00; border-color: #ff5a00; }
+.delivery-logo-talabat:hover { border-color: #e54e00; box-shadow: 0 8px 22px rgba(255, 90, 0, .2); }
 
 /* ---------- Intro / Story ---------- */
 .intro-section { padding-top: 120px; padding-bottom: 120px; }
@@ -233,7 +240,7 @@ h2 { font-size: clamp(44px, 6vw, 80px); margin-bottom: 0; }
 .visit-section h2 em { color: #293118; }
 .visit-details { padding-top: 27px; }
 .visit-details > p { color: #e2ecc1; font: 600 16px 'Playfair Display', serif; }
-.visit-info { border-top: 1px solid rgba(246, 247, 235, .35); margin-top: 40px; padding-top: 19px; display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.visit-info { border-top: 1px solid rgba(246, 247, 235, .35); margin-top: 40px; padding-top: 19px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .visit-info div { display: grid; gap: 8px; }
 .visit-info strong { font-size: 11px; display: inline-flex; align-items: center; gap: 7px; }
 .visit-info strong svg { color: #c8db8e; }
@@ -255,6 +262,19 @@ h2 { font-size: clamp(44px, 6vw, 80px); margin-bottom: 0; }
 .footer-bar { border-top: 1px solid #383a35; padding: 22px 0; display: flex; justify-content: space-between; align-items: center; font: 500 10px 'DM Mono', monospace; text-transform: uppercase; letter-spacing: .07em; color: #797c73; }
 .back-to-top { display: flex; align-items: center; gap: 7px; background: transparent; color: #b8bab4; font: 700 10px 'Manrope', sans-serif; text-transform: none; letter-spacing: 0; transition: color .2s; }
 .back-to-top:hover { color: var(--lime); }
+
+/* ---------- SEO Content ---------- */
+.seo-content {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* ---------- Responsive ---------- */
 @media (max-width: 880px) {
@@ -292,6 +312,7 @@ h2 { font-size: clamp(44px, 6vw, 80px); margin-bottom: 0; }
   .footer-inner { grid-template-columns: 1fr; gap: 35px; }
   .footer-links { gap: 44px; }
   .delivery-inner { gap: 18px; }
+  .delivery-copy { text-align: center; }
   .delivery-logos { gap: 12px; }
   .delivery-logo { width: 60px; height: 60px; border-radius: 8px; }
   .delivery-brand-image { width: 44px; height: 44px; }
