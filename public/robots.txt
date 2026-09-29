@@ -1,3 +1,31 @@
+# robots.txt — Energy Hub Cafe
+# https://energyhubcafe.ae/
+# Last updated: 2026-09-29
+
 User-agent: *
 Allow: /
+Disallow: /api/
+Disallow: /assets/*.map$
 
+# Sitemaps
+Sitemap: https://energyhubcafe.ae/sitemap.xml
+
+# Crawl-delay (advisory for supporting bots)
+User-agent: Bingbot
+Crawl-delay: 5
+
+User-agent: Yandex
+Crawl-delay: 5
+
+# AI crawlers
+User-agent: GPTBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /images/
