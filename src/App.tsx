@@ -322,7 +322,7 @@ function App() {
               <span>Order & follow</span>
               <a href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle size={14} /> WhatsApp order</a>
               <a href={CAFE.noonUrl} target="_blank" rel="noopener noreferrer"><ArrowRight size={14} /> Home delivery</a>
-              <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer"><Instagram size={15} /> Instagram</a>
+              <a href="https://www.instagram.com/energyhub_cafe" target="_blank" rel="noopener noreferrer"><Instagram size={15} /> Instagram</a>
             </div>
           </div>
         </div>
