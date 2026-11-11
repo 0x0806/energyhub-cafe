@@ -4,8 +4,8 @@
   "description": "Healthy high-protein cafe in Al Nahda, Sharjah.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#f6f3ea",
-  "theme_color": "#f6f3ea",
+  "background_color": "#0d100b",
+  "theme_color": "#0d100b",
   "lang": "en",
   "icons": [
     {

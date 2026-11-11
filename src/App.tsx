@@ -1,32 +1,45 @@
 import { useEffect, useState } from 'react';
 import { ArrowRight, ArrowUpRight, Clock3, Instagram, MapPin, Menu as MenuIcon, MessageCircle, Phone, X } from 'lucide-react';
-import { CAFE, boards, menu } from './data';
+import BlurText from '@/components/BlurText';
+import Magnet from '@/components/Magnet';
+import SpotlightCard from '@/components/SpotlightCard';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import { CAFE, faq, menu } from './data';
+import manifest from './dish-manifest.json';
 
-const food = (name: string): string => `/img/food/${name}.webp`;
+type DishSize = '256' | '720';
+const dims = manifest as unknown as Record<string, Partial<Record<DishSize, [number, number]>>>;
 
-const heroPhotos = ['bowl-chicken-egg', 'juice-avocado', 'pizza-bbq', 'cheesecake'];
-const stripPhotos = ['bowl-quinoa', 'burger', 'loaded-fries', 'lasagna', 'juice-watermelon', 'tiramisu'];
-
-const waText = (text: string): string => `${CAFE.whatsappUrl}?text=${encodeURIComponent(text)}`;
-
-const navLinks = [
-  { href: '#menu', label: 'Menu' },
-  { href: '#deals', label: 'Deals' },
-  { href: '#visit', label: 'Visit' },
-];
-
-function Photo({ name, eager = false }: { name: string; eager?: boolean }) {
+function Dish({ k, size, alt = '', eager = false, className }: { k: string; size: DishSize; alt?: string; eager?: boolean; className?: string }) {
+  const d = dims[k]?.[size];
+  if (!d) return null;
   return (
     <img
-      src={food(name)}
-      alt=""
-      width={560}
-      height={560}
+      className={className}
+      src={`/img/dishes/${k}-${size}.webp`}
+      alt={alt}
+      width={d[0]}
+      height={d[1]}
       loading={eager ? 'eager' : 'lazy'}
       decoding="async"
     />
   );
 }
+
+const waText = (text: string): string => `${CAFE.whatsappUrl}?text=${encodeURIComponent(text)}`;
+
+const navLinks = [
+  { href: '#signatures', label: 'Signatures' },
+  { href: '#menu', label: 'Menu' },
+  { href: '#visit', label: 'Visit' },
+];
+
+const signatures = [
+  { id: 'bowls', title: 'Protein bowls', line: 'From AED 28', img: 'matrix-bowl', alt: 'Chicken-egg protein matrix bowl', href: '#m-protein', wide: true },
+  { id: 'juices', title: 'Fresh juices', line: 'AED 10 medium, 13 large', img: 'juice-pomegranate', alt: 'Pomegranate juice', href: '#m-drinks', wide: false },
+  { id: 'pizza', title: 'Pizza', line: 'From AED 25', img: 'pizza-pepperoni', alt: 'Pepperoni pizza', href: '#m-mains', wide: false },
+  { id: 'cakes', title: 'Cakes', line: 'From AED 14', img: 'strawberry-cheesecake', alt: 'Strawberry cheesecake', href: '#m-cakes', wide: true },
+];
 
 function App() {
   const [open, setOpen] = useState(false);
@@ -58,14 +71,14 @@ function App() {
       <header className={`site-header${scrolled ? ' is-scrolled' : ''}`}>
         <div className="wrap header-row">
           <a className="brand" href="#top" aria-label="Energy Hub Cafe, back to top">
-            <img src="/img/brand/logo-512.webp" alt="" width={512} height={512} />
-            <span>Energy Hub <b>Cafe</b></span>
+            <img src="/img/brand/logo-256.webp" alt="" width={256} height={256} />
+            <span>Energy Hub <i>Cafe</i></span>
           </a>
           <nav id="site-nav" className={`site-nav${open ? ' is-open' : ''}`} aria-label="Main">
             {navLinks.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="link">{l.label}</a>
+              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="nav-link">{l.label}</a>
             ))}
-            <a className="btn btn-primary" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer">
+            <a className="btn btn-gold" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer">
               <MessageCircle size={18} aria-hidden="true" /> Order on WhatsApp
             </a>
           </nav>
@@ -83,70 +96,77 @@ function App() {
       </header>
 
       <main id="main">
-        <section className="hero" id="top" data-enter>
+        <section className="hero" id="top">
           <div className="wrap hero-grid">
             <div className="hero-copy">
-              <h1>Healthy high&#8209;protein food in <em>Al&nbsp;Nahda, Sharjah</em></h1>
+              <h1>
+                <BlurText as="span" text="Healthy high-protein food" className="h1-line" delay={90} trigger="load" stepDuration={0.45} />
+                <BlurText as="span" text="in Al Nahda, Sharjah" className="h1-line h1-accent" delay={90} trigger="load" stepDuration={0.45} />
+              </h1>
               <p className="lead">
-                Protein bowls, fresh juices, breakfast and café classics, inside New Life Style Way Gym.
-                Dine in, take away or get it delivered.
+                Protein bowls, fresh juices, breakfast, pasta, pizza and cakes. {CAFE.landmark}.
               </p>
-              <p className="fact"><strong>Protein bowls from AED 28.</strong> Open daily, 6 AM to 11 PM.</p>
+              <p className="fact"><strong>Protein bowls from AED 28.</strong> Open daily, 5 AM to midnight.</p>
               <div className="actions">
-                <a className="btn btn-primary" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer">
-                  <MessageCircle size={18} aria-hidden="true" /> Order on WhatsApp
-                </a>
-                <a className="btn btn-secondary" href="#menu">See the menu <ArrowRight size={18} aria-hidden="true" /></a>
+                <Magnet padding={60} magnetStrength={4} maxOffset={10}>
+                  <a className="btn btn-gold" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer">
+                    <MessageCircle size={18} aria-hidden="true" /> Order on WhatsApp
+                  </a>
+                </Magnet>
+                <a className="btn btn-line" href="#menu">See the menu <ArrowRight size={18} aria-hidden="true" /></a>
               </div>
             </div>
-            <div className="hero-photos">
-              {heroPhotos.map((p, i) => (
-                <div className="tile" key={p} style={{ ['--i' as string]: i }}>
-                  <Photo name={p} eager />
-                </div>
-              ))}
+            <div className="stage" data-enter>
+              <span className="halo" aria-hidden="true" />
+              <Dish k="pizza-bbq" size="720" eager className="stage-pizza" />
+              <Dish k="matrix-bowl" size="720" eager alt="Chicken-egg protein matrix bowl" className="stage-bowl" />
+              <Dish k="juice-avocado" size="720" eager className="stage-juice" />
+            </div>
+          </div>
+          <div className="partners">
+            <div className="wrap partners-row" role="group" aria-labelledby="partners-h">
+            <h2 id="partners-h">Delivery partners</h2>
+            <ul>
+              <li><a className="partner" href={CAFE.noonUrl} target="_blank" rel="noopener noreferrer" aria-label="Order Energy Hub Cafe on noon FOOD"><img src="/img/partners/noon-food.png" alt="" width={248} height={123} loading="lazy" /></a></li>
+              <li><a className="partner" href={CAFE.talabatUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Energy Hub Cafe on Talabat"><img src="/img/partners/talabat.png" alt="" width={248} height={123} loading="lazy" /></a></li>
+              <li><a className="partner" href={CAFE.keetaUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Energy Hub Cafe on Keeta"><img src="/img/partners/keeta.png" alt="" width={123} height={123} loading="lazy" /></a></li>
+            </ul>
             </div>
           </div>
         </section>
 
-        <section className="delivery" aria-labelledby="delivery-h">
-          <div className="wrap delivery-row">
-            <h2 id="delivery-h">Delivered across Sharjah</h2>
-            <ul className="delivery-logos">
-              <li>
-                <a className="logo-link" href={CAFE.noonUrl} target="_blank" rel="noopener noreferrer" aria-label="Order Energy Hub Cafe on noon food">
-                  <img src="/img/brand/noon.png" alt="" width={52} height={52} loading="lazy" />
-                  <span>noon food</span>
-                </a>
-              </li>
-              <li>
-                <a className="logo-link" href={CAFE.keetaUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Energy Hub Cafe on Keeta">
-                  <img src="/img/brand/keeta.png" alt="" width={52} height={52} loading="lazy" />
-                  <span>Keeta</span>
-                </a>
-              </li>
-              <li>
-                <a className="logo-link" href={CAFE.talabatUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Energy Hub Cafe on Talabat">
-                  <img src="/img/brand/talabat.png" alt="" width={52} height={52} loading="lazy" />
-                  <span>Talabat</span>
-                </a>
-              </li>
-            </ul>
-            <p>Or message us on WhatsApp and we will take your order directly.</p>
+        <section className="signatures" id="signatures" aria-labelledby="sig-h">
+          <div className="wrap">
+            <h2 id="sig-h">The <em>signature</em> plates</h2>
+            <div className="sig-grid">
+              {signatures.map((s) => (
+                <SpotlightCard
+                  key={s.id}
+                  theme="dark"
+                  spotlightColor="#c6a96b"
+                  intensity={0.55}
+                  spotlightSize={420}
+                  className={`sig-card${s.wide ? ' is-wide' : ''}`}
+                >
+                  <a className="sig-link" href={s.href}>
+                    <Dish k={s.img} size="720" alt={s.alt} />
+                    <span className="sig-text">
+                      <span className="sig-title">{s.title}</span>
+                      <span className="sig-line">{s.line}</span>
+                    </span>
+                    <ArrowUpRight className="sig-arrow" size={22} aria-hidden="true" />
+                  </a>
+                </SpotlightCard>
+              ))}
+            </div>
           </div>
         </section>
 
         <section className="menu" id="menu" aria-labelledby="menu-h">
           <div className="wrap">
             <div className="section-head">
-              <h2 id="menu-h">The full menu, with prices</h2>
+              <h2 id="menu-h">The <em>menu</em></h2>
               <p>All prices in AED, including 5% VAT.</p>
-            </div>
-
-            <div className="strip" aria-hidden="true">
-              {stripPhotos.map((p) => (
-                <div className="tile" key={p}><Photo name={p} /></div>
-              ))}
             </div>
 
             <nav className="menu-jump" aria-label="Menu sections">
@@ -165,6 +185,7 @@ function App() {
                       <ul>
                         {g.items.map((it) => (
                           <li key={it.name}>
+                            <span className="thumb">{it.img ? <Dish k={it.img} size="256" /> : null}</span>
                             <span className="item-name">
                               {it.name}
                               {it.note ? <small>{it.note}</small> : null}
@@ -179,60 +200,43 @@ function App() {
                 </div>
               </div>
             ))}
+          </div>
+        </section>
 
-            <div className="boards">
-              <h3>Prefer the printed boards?</h3>
-              <ul>
-                {boards.map((b) => (
-                  <li key={b.n}>
-                    <a className="board" href={`/img/boards/menu-${b.n}-full.webp`} target="_blank" rel="noopener noreferrer">
-                      <img src={`/img/boards/menu-${b.n}.webp`} alt={b.alt} width={1000} height={727} loading="lazy" decoding="async" />
-                      <span className="sr-only">(opens full size)</span>
-                    </a>
-                  </li>
-                ))}
-              </ul>
+        <section className="cakes" aria-labelledby="cakes-h">
+          <div className="wrap cakes-grid">
+            <div className="cakes-photo"><Dish k="birthday-cake" size="720" alt="Chocolate birthday cake with candles on a gold stand" /></div>
+            <div className="cakes-copy">
+              <h2 id="cakes-h">Birthday cakes, <em>made to pre-order</em></h2>
+              <p className="lead">Freshly prepared for your special day. Tell us the date and we will take it from there.</p>
+              <div className="actions">
+                <a className="btn btn-gold" href={waText('Hi Energy Hub Cafe, I would like to pre-order a birthday cake.')} target="_blank" rel="noopener noreferrer">
+                  <MessageCircle size={18} aria-hidden="true" /> Pre-order on WhatsApp
+                </a>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className="deals" id="deals" aria-labelledby="deals-h">
-          <div className="wrap">
-            <h2 id="deals-h">Combos and cakes</h2>
-            <div className="deal-grid">
-              <a className="deal deal-big" href={waText('Hi Energy Hub Cafe, I would like to pre-order a birthday cake.')} target="_blank" rel="noopener noreferrer">
-                <div className="deal-photo"><Photo name="birthday-cake" /></div>
-                <div className="deal-text">
-                  <h3>Birthday cakes, made to pre-order</h3>
-                  <p>Custom cakes for your occasion. Tell us the day and we will plan it.</p>
-                  <span className="more">Ask on WhatsApp <ArrowUpRight size={18} aria-hidden="true" /></span>
-                </div>
-              </a>
-              <a className="deal" href={waText('Hi Energy Hub Cafe, I would like the pre-workout and protein combo.')} target="_blank" rel="noopener noreferrer">
-                <div className="deal-photo"><Photo name="shake" /></div>
-                <div className="deal-text">
-                  <h3>Pre-workout and protein combo</h3>
-                  <p><strong>AED 13</strong>, for gym members only.</p>
-                  <span className="more">Order on WhatsApp <ArrowUpRight size={18} aria-hidden="true" /></span>
-                </div>
-              </a>
-              <a className="deal" href={waText('Hi Energy Hub Cafe, I would like a South Indian breakfast set.')} target="_blank" rel="noopener noreferrer">
-                <div className="deal-photo"><Photo name="idly-sambar" /></div>
-                <div className="deal-text">
-                  <h3>South Indian breakfast sets</h3>
-                  <p><strong>AED 7</strong> for idly sambar, idiyappam or puttu kadala.</p>
-                  <span className="more">Order on WhatsApp <ArrowUpRight size={18} aria-hidden="true" /></span>
-                </div>
-              </a>
-            </div>
+        <section className="good" aria-labelledby="good-h">
+          <div className="wrap good-grid">
+            <h2 id="good-h">Good <em>to know</em></h2>
+            <Accordion type="single" collapsible className="faq">
+              {faq.map((f, i) => (
+                <AccordionItem key={f.q} value={`q${i}`} className="faq-item">
+                  <AccordionTrigger className="faq-trigger">{f.q}</AccordionTrigger>
+                  <AccordionContent className="faq-content">{f.a}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </section>
 
         <section className="visit" id="visit" aria-labelledby="visit-h">
           <div className="wrap visit-grid">
             <div>
-              <h2 id="visit-h">Find us in Al&nbsp;Nahda</h2>
-              <p className="visit-lead">On the ground floor of Al Tayer Tower, inside New Life Style Way Gym.</p>
+              <h2 id="visit-h">Find us in <em>Al&nbsp;Nahda</em></h2>
+              <p className="lead">{CAFE.landmark}, on the ground floor of Al Tayer Tower.</p>
             </div>
             <div className="visit-details">
               <dl>
@@ -246,12 +250,16 @@ function App() {
                 </div>
                 <div>
                   <dt><Phone size={18} aria-hidden="true" /> Phone</dt>
-                  <dd><a className="link" href={CAFE.phoneHref}>{CAFE.phone}</a></dd>
+                  <dd><a className="text-link" href={CAFE.phoneHref}>{CAFE.phone}</a></dd>
+                </div>
+                <div>
+                  <dt><MessageCircle size={18} aria-hidden="true" /> WhatsApp</dt>
+                  <dd><a className="text-link" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer">{CAFE.whatsappNumber}</a></dd>
                 </div>
               </dl>
               <div className="actions">
-                <a className="btn btn-dark" href={CAFE.mapsUrl} target="_blank" rel="noopener noreferrer">Get directions <ArrowUpRight size={18} aria-hidden="true" /></a>
-                <a className="btn btn-outline" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle size={18} aria-hidden="true" /> Order on WhatsApp</a>
+                <a className="btn btn-gold" href={CAFE.mapsUrl} target="_blank" rel="noopener noreferrer">Get directions <ArrowUpRight size={18} aria-hidden="true" /></a>
+                <a className="btn btn-line" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer"><MessageCircle size={18} aria-hidden="true" /> Order on WhatsApp</a>
               </div>
             </div>
           </div>
@@ -261,24 +269,24 @@ function App() {
       <footer className="site-footer">
         <div className="wrap footer-row">
           <a className="brand" href="#top" aria-label="Energy Hub Cafe, back to top">
-            <img src="/img/brand/logo-512.webp" alt="" width={512} height={512} loading="lazy" />
-            <span>Energy Hub <b>Cafe</b></span>
+            <img src="/img/brand/logo-256.webp" alt="" width={256} height={256} loading="lazy" />
+            <span>Energy Hub <i>Cafe</i></span>
           </a>
           <ul className="footer-links">
-            <li><a className="link" href="#menu">Menu</a></li>
-            <li><a className="link" href="#deals">Deals</a></li>
-            <li><a className="link" href="#visit">Visit</a></li>
-            <li><a className="link" href={CAFE.instagramUrl} target="_blank" rel="noopener noreferrer"><Instagram size={16} aria-hidden="true" /> Instagram</a></li>
+            <li><a className="nav-link" href="#signatures">Signatures</a></li>
+            <li><a className="nav-link" href="#menu">Menu</a></li>
+            <li><a className="nav-link" href="#visit">Visit</a></li>
+            <li><a className="nav-link" href={CAFE.instagramUrl} target="_blank" rel="noopener noreferrer"><Instagram size={16} aria-hidden="true" /> {CAFE.instagramHandle}</a></li>
           </ul>
-          <p>© {new Date().getFullYear()} Energy Hub Cafe, Al Nahda, Sharjah.</p>
+          <p>Good food, good energy. © {new Date().getFullYear()} Energy Hub Cafe, Al Nahda, Sharjah.</p>
         </div>
       </footer>
 
       <div className="action-bar">
-        <a className="btn btn-primary" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer">
+        <a className="btn btn-gold" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer">
           <MessageCircle size={18} aria-hidden="true" /> Order
         </a>
-        <a className="btn btn-dark" href={CAFE.phoneHref}><Phone size={18} aria-hidden="true" /> Call</a>
+        <a className="btn btn-line" href={CAFE.phoneHref}><Phone size={18} aria-hidden="true" /> Call</a>
       </div>
     </>
   );
