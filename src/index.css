@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Metric-matched fallbacks: keep layout stable while the web fonts arrive (no reflow on swap). */
+@font-face { font-family: 'Instrument Serif Fallback'; font-style: normal; src: local('Times New Roman'), local('Liberation Serif'), local('Times'); size-adjust: 84.2%; }
+@font-face { font-family: 'Instrument Serif Fallback'; font-style: italic; src: local('Times New Roman Italic'), local('Liberation Serif Italic'), local('Times-Italic'); size-adjust: 88.5%; }
+
 :root {
   --ink: #0d100b;
   --deep: #141a11;
@@ -10,8 +14,8 @@
   --gold: #c6a96b;
   --gold-ink: #75591f;
   --lime: #a6cc13;
-  --font-display: 'Instrument Serif', 'Times New Roman', serif;
-  --font-body: 'Figtree', system-ui, sans-serif;
+  --font-display: 'Instrument Serif', 'Instrument Serif Fallback', 'Times New Roman', serif;
+  --font-body: 'Figtree', Arial, system-ui, sans-serif;
   --header-h: 76px;
   --split: 96px;
   --ease: cubic-bezier(.16, 1, .3, 1);
@@ -177,6 +181,7 @@ h2 em, h1 .h1-accent { font-style: italic; color: var(--gold); }
 .faq-item { border-bottom: 1px solid rgba(117, 89, 31, .45); }
 .faq-trigger { font: 400 clamp(24px, 2.4vw, 30px)/1.2 var(--font-display) !important; padding-block: 22px !important; text-align: left; text-decoration: none !important; min-height: 44px; }
 .faq-trigger svg { color: var(--gold-ink); flex: none; }
+.faq [role="region"][data-state="closed"] { display: none; }
 .faq-content { font-size: 17px; line-height: 1.65; color: #38362e; max-width: 36em; padding-bottom: 24px !important; }
 
 /* Visit */

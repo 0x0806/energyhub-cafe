@@ -14,6 +14,8 @@ export type BlurTextTrigger = 'view' | 'load' | 'hover' | 'click';
 type BlurTextProps = {
   text?: string;
   as?: 'p' | 'span' | 'div';
+  /** Render a visually hidden copy of the text for screen readers (turn off when a parent carries aria-label). */
+  srText?: boolean;
   delay?: number;
   className?: string;
   animateBy?: 'words' | 'letters';
@@ -214,6 +216,7 @@ const startPhase = (trigger: BlurTextTrigger): Phase =>
 
 const BlurText = ({
   as = 'p',
+  srText = true,
   text = '',
   delay = 200,
   className = '',
@@ -422,7 +425,7 @@ const BlurText = ({
         onPointerEnter={trigger === 'hover' ? handleEnter : undefined}
         onClick={trigger === 'click' ? replay : undefined}
       >
-        <span className="sr-only select-none">{text}</span>
+        {srText ? <span className="sr-only select-none">{text}</span> : null}
         {groups.map((indices, w) => (
           <span
             key={`word-${w}`}

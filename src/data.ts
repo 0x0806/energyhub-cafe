@@ -5,6 +5,7 @@ export const CAFE = {
   addressLine2: '19 Street, Al Nahda, Sharjah',
   landmark: 'Near New Life Style Way Gym',
   phone: '+971 6 742 3253',
+  phoneE164: '+97167423253',
   phoneHref: 'tel:+97167423253',
   whatsappNumber: '+971 50 725 0627',
   whatsappUrl: 'https://wa.me/971507250627',

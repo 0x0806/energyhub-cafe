@@ -83,7 +83,7 @@ for key, fn in {**{k: (SRC, v) for k, v in FILES.items()}, **{k: (LINKS, v) for 
     manifest[key] = {}
     for size in ((256, 720) if key in BIG else (256,)):
         c = im.copy(); c.thumbnail((size, size), Image.LANCZOS)
-        c.save(os.path.join(OUT, f'{key}-{size}.webp'), 'WEBP', quality=84, alpha_quality=92, method=6)
+        c.save(os.path.join(OUT, f'{key}-{size}.webp'), 'WEBP', quality=72, alpha_quality=80, method=6)
         manifest[key][str(size)] = [c.width, c.height]
 json.dump(manifest, open(MANIFEST, 'w'), indent=1, sort_keys=True)
 print(len(manifest), 'dishes;', sum(len(v) for v in manifest.values()), 'files')

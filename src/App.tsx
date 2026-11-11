@@ -10,7 +10,7 @@ import manifest from './dish-manifest.json';
 type DishSize = '256' | '720';
 const dims = manifest as unknown as Record<string, Partial<Record<DishSize, [number, number]>>>;
 
-function Dish({ k, size, alt = '', eager = false, className }: { k: string; size: DishSize; alt?: string; eager?: boolean; className?: string }) {
+function Dish({ k, size, alt = '', eager = false, priority = false, className }: { k: string; size: DishSize; alt?: string; eager?: boolean; priority?: boolean; className?: string }) {
   const d = dims[k]?.[size];
   if (!d) return null;
   return (
@@ -21,6 +21,7 @@ function Dish({ k, size, alt = '', eager = false, className }: { k: string; size
       width={d[0]}
       height={d[1]}
       loading={eager ? 'eager' : 'lazy'}
+      fetchPriority={priority ? 'high' : undefined}
       decoding="async"
     />
   );
@@ -99,9 +100,9 @@ function App() {
         <section className="hero" id="top">
           <div className="wrap hero-grid">
             <div className="hero-copy">
-              <h1>
-                <BlurText as="span" text="Healthy high-protein food" className="h1-line" delay={90} trigger="load" stepDuration={0.45} />
-                <BlurText as="span" text="in Al Nahda, Sharjah" className="h1-line h1-accent" delay={90} trigger="load" stepDuration={0.45} />
+              <h1 aria-label="Healthy high-protein food in Al Nahda, Sharjah">
+                <BlurText as="span" srText={false} text="Healthy high-protein food" className="h1-line" delay={90} trigger="load" stepDuration={0.45} />{' '}
+                <BlurText as="span" srText={false} text="in Al Nahda, Sharjah" className="h1-line h1-accent" delay={90} trigger="load" stepDuration={0.45} />
               </h1>
               <p className="lead">
                 Protein meals, fresh juices, breakfast, pasta, pizza and cakes. {CAFE.landmark}.
@@ -119,7 +120,7 @@ function App() {
             <div className="stage" data-enter>
               <span className="halo" aria-hidden="true" />
               <Dish k="pizza-bbq" size="720" eager className="stage-pizza" />
-              <Dish k="matrix-bowl" size="720" eager alt="Chicken-egg protein matrix bowl" className="stage-bowl" />
+              <Dish k="matrix-bowl" size="720" eager priority alt="Chicken-egg protein matrix bowl" className="stage-bowl" />
               <Dish k="juice-avocado" size="720" eager className="stage-juice" />
             </div>
           </div>
