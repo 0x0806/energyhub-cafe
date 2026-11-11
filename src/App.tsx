@@ -21,7 +21,7 @@ function Dish({ k, size, alt = '', eager = false, priority = false, className }:
       width={d[0]}
       height={d[1]}
       loading={eager ? 'eager' : 'lazy'}
-      fetchPriority={priority ? 'high' : undefined}
+      fetchPriority={priority ? 'high' : eager ? undefined : 'low'}
       decoding="async"
     />
   );
