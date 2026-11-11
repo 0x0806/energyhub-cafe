@@ -3,19 +3,19 @@ export const CAFE = {
   siteUrl: 'https://www.energyhub.cafe/',
   addressLine1: 'Al Tayer Tower, G Floor, Shop 5',
   addressLine2: '19 Street, Al Nahda, Sharjah',
-  landmark: 'Next to New Life Style Way Gym',
-  phone: '06 742 3253',
+  landmark: 'Near New Life Style Way Gym',
+  phone: '+971 6 742 3253',
   phoneHref: 'tel:+97167423253',
-  whatsappNumber: '050 725 0627',
+  whatsappNumber: '+971 50 725 0627',
   whatsappUrl: 'https://wa.me/971507250627',
   mapsUrl:
     'https://www.google.com/maps/search/?api=1&query=Energy+Hub+Cafe+Al+Tayer+Tower+Al+Nahda+Sharjah',
   noonUrl: 'https://food.noon.com/uae-en/outlet/NRGYHB5ASR/',
-  keetaUrl: 'https://www.keeta.com',
-  talabatUrl: 'https://www.talabat.com/uae',
+  googleUrl: 'https://share.google/IfVIvfcdFDtPf23Gh',
   instagramUrl: 'https://www.instagram.com/energyhub.cafe',
   instagramHandle: '@energyhub.cafe',
   hours: 'Daily, 5:00 AM – 12:00 AM',
+  hoursShort: '5:00 AM – 12:00 AM',
 };
 
 export interface MenuItem {
@@ -235,11 +235,11 @@ export const menu: MenuSection[] = [
 export const faq = [
   {
     q: 'How do I order?',
-    a: 'Message us on WhatsApp at 050 725 0627 or call 06 742 3253. We are also on noon FOOD, Talabat and Keeta for delivery.',
+    a: 'Message us on WhatsApp at +971 50 725 0627 or call +971 6 742 3253. We also deliver through noon FOOD, Talabat and Keeta.',
   },
   {
     q: 'When are you open?',
-    a: 'Every day, from 5:00 AM to 12:00 AM.',
+    a: 'Every day, 5:00 AM – 12:00 AM.',
   },
   {
     q: 'Do the prices include VAT?',
@@ -258,3 +258,12 @@ export const faq = [
     a: 'South Indian snacks are made to order and perfect for sharing. Ask us on WhatsApp about ordering for a group.',
   },
 ];
+
+/** Verbatim guest reviews. Add only reviews the cafe has approved, exactly as written, with the name as shown. */
+export interface Review {
+  text: string;
+  author: string;
+  source: string;
+  url: string;
+}
+export const reviews: Review[] = [];

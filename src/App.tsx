@@ -4,7 +4,7 @@ import BlurText from '@/components/BlurText';
 import Magnet from '@/components/Magnet';
 import SpotlightCard from '@/components/SpotlightCard';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
-import { CAFE, faq, menu } from './data';
+import { CAFE, faq, menu, reviews } from './data';
 import manifest from './dish-manifest.json';
 
 type DishSize = '256' | '720';
@@ -35,7 +35,7 @@ const navLinks = [
 ];
 
 const signatures = [
-  { id: 'bowls', title: 'Protein bowls', line: 'From AED 28', img: 'matrix-bowl', alt: 'Chicken-egg protein matrix bowl', href: '#m-protein', wide: true },
+  { id: 'bowls', title: 'Protein meals', line: 'From AED 28', img: 'matrix-bowl', alt: 'Chicken-egg protein matrix bowl', href: '#m-protein', wide: true },
   { id: 'juices', title: 'Fresh juices', line: 'AED 10 medium, 13 large', img: 'juice-pomegranate', alt: 'Pomegranate juice', href: '#m-drinks', wide: false },
   { id: 'pizza', title: 'Pizza', line: 'From AED 25', img: 'pizza-pepperoni', alt: 'Pepperoni pizza', href: '#m-mains', wide: false },
   { id: 'cakes', title: 'Cakes', line: 'From AED 14', img: 'strawberry-cheesecake', alt: 'Strawberry cheesecake', href: '#m-cakes', wide: true },
@@ -104,9 +104,9 @@ function App() {
                 <BlurText as="span" text="in Al Nahda, Sharjah" className="h1-line h1-accent" delay={90} trigger="load" stepDuration={0.45} />
               </h1>
               <p className="lead">
-                Protein bowls, fresh juices, breakfast, pasta, pizza and cakes. {CAFE.landmark}.
+                Protein meals, fresh juices, breakfast, pasta, pizza and cakes. {CAFE.landmark}.
               </p>
-              <p className="fact"><strong>Protein bowls from AED 28.</strong> Open daily, 5 AM to midnight.</p>
+              <p className="fact"><strong>High-protein meals from AED 28.</strong> Open daily, {CAFE.hoursShort}.</p>
               <div className="actions">
                 <Magnet padding={60} magnetStrength={4} maxOffset={10}>
                   <a className="btn btn-gold" href={CAFE.whatsappUrl} target="_blank" rel="noopener noreferrer">
@@ -125,11 +125,11 @@ function App() {
           </div>
           <div className="partners">
             <div className="wrap partners-row" role="group" aria-labelledby="partners-h">
-            <h2 id="partners-h">Delivery partners</h2>
+            <h2 id="partners-h">Also on</h2>
             <ul>
-              <li><a className="partner" href={CAFE.noonUrl} target="_blank" rel="noopener noreferrer" aria-label="Order Energy Hub Cafe on noon FOOD"><img src="/img/partners/noon-food.png" alt="" width={248} height={123} loading="lazy" /></a></li>
-              <li><a className="partner" href={CAFE.talabatUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Energy Hub Cafe on Talabat"><img src="/img/partners/talabat.png" alt="" width={248} height={123} loading="lazy" /></a></li>
-              <li><a className="partner" href={CAFE.keetaUrl} target="_blank" rel="noopener noreferrer" aria-label="Find Energy Hub Cafe on Keeta"><img src="/img/partners/keeta.png" alt="" width={123} height={123} loading="lazy" /></a></li>
+              <li><a className="partner" href={CAFE.noonUrl} target="_blank" rel="noopener noreferrer" aria-label="Order Energy Hub Cafe on noon FOOD"><img src="/img/partners/noon-food.webp" alt="" width={290} height={144} loading="lazy" /></a></li>
+              <li><span className="partner"><img src="/img/partners/talabat.webp" alt="" width={290} height={144} loading="lazy" /></span><span className="sr-only">Talabat</span></li>
+              <li><span className="partner"><img src="/img/partners/keeta.webp" alt="" width={144} height={144} loading="lazy" /></span><span className="sr-only">Keeta</span></li>
             </ul>
             </div>
           </div>
@@ -218,6 +218,30 @@ function App() {
           </div>
         </section>
 
+        <section className="reviews" aria-labelledby="reviews-h">
+          <div className="wrap reviews-grid">
+            <div>
+              <h2 id="reviews-h">Guest <em>reviews</em></h2>
+              <p className="lead">See what guests say about Energy Hub Cafe on Google, and add your own.</p>
+              <div className="actions">
+                <a className="btn btn-dark" href={CAFE.googleUrl} target="_blank" rel="noopener noreferrer">Read reviews on Google <ArrowUpRight size={18} aria-hidden="true" /></a>
+              </div>
+            </div>
+            {reviews.length > 0 ? (
+              <ul className="quotes">
+                {reviews.map((r) => (
+                  <li key={r.author + r.text.slice(0, 12)}>
+                    <blockquote>{r.text}</blockquote>
+                    <p>
+                      {r.author}, <a className="text-link" href={r.url} target="_blank" rel="noopener noreferrer">{r.source}</a>
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            ) : null}
+          </div>
+        </section>
+
         <section className="good" aria-labelledby="good-h">
           <div className="wrap good-grid">
             <h2 id="good-h">Good <em>to know</em></h2>
@@ -236,7 +260,7 @@ function App() {
           <div className="wrap visit-grid">
             <div>
               <h2 id="visit-h">Find us in <em>Al&nbsp;Nahda</em></h2>
-              <p className="lead">{CAFE.landmark}, on the ground floor of Al Tayer Tower.</p>
+              <p className="lead">{CAFE.landmark}, on the ground floor of Al Tayer Tower, Al Nahda.</p>
             </div>
             <div className="visit-details">
               <dl>

@@ -60,7 +60,7 @@ h2 em, h1 .h1-accent { font-style: italic; color: var(--gold); }
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 10px;
-  min-height: 54px; padding: 12px 28px;
+  min-height: 52px; padding: 12px 28px;
   font: 600 15px/1.2 var(--font-body); letter-spacing: .03em; text-decoration: none; white-space: nowrap;
   border: 1px solid transparent; border-radius: 0;
   transition: background-color .25s, color .25s, border-color .25s, transform .25s var(--ease);
@@ -89,7 +89,7 @@ h2 em, h1 .h1-accent { font-style: italic; color: var(--gold); }
 .brand i { color: var(--gold); }
 .site-nav { display: flex; align-items: center; gap: 36px; }
 .site-nav .nav-link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 500; font-size: 15px; letter-spacing: .04em; }
-.site-nav .btn { min-height: 46px; padding-inline: 22px; }
+
 .nav-toggle { display: none; width: 48px; height: 48px; align-items: center; justify-content: center; }
 
 /* Hero */
@@ -158,6 +158,18 @@ h2 em, h1 .h1-accent { font-style: italic; color: var(--gold); }
 .cakes-photo img { position: relative; width: 100%; max-width: 520px; margin-inline: auto; filter: drop-shadow(0 30px 40px rgba(0, 0, 0, .55)); }
 .cakes-copy > * + * { margin-top: 24px; }
 
+/* Reviews */
+.reviews { background: var(--ivory); color: var(--ink); padding-block: 72px; border-top: 1px solid rgba(117, 89, 31, .35); }
+.reviews h2 em { color: var(--gold-ink); }
+.reviews .lead { color: #4c4a40; }
+.reviews-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--split); align-items: center; }
+.reviews :focus-visible { outline-color: var(--ink); }
+.btn-dark { background: var(--ink); border-color: var(--ink); color: var(--ivory); }
+.btn-dark:hover { background: var(--gold-ink); border-color: var(--gold-ink); }
+.quotes { display: grid; gap: 28px; }
+.quotes blockquote { margin: 0; font: 400 clamp(24px, 2.4vw, 32px)/1.25 var(--font-display); }
+.quotes p { margin-top: 10px; color: #4c4a40; }
+
 /* Good to know */
 .good { background: var(--ivory); color: var(--ink); padding-block: clamp(72px, 9vw, 132px); }
 .good-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--split); align-items: start; }
@@ -205,7 +217,7 @@ h2 em, h1 .h1-accent { font-style: italic; color: var(--gold); }
 
 @media (max-width: 960px) {
   :root { --split: 40px; }
-  .hero-grid, .cakes-grid, .good-grid, .visit-grid { grid-template-columns: 1fr; }
+  .hero-grid, .cakes-grid, .good-grid, .visit-grid, .reviews-grid { grid-template-columns: 1fr; }
   .signatures, .cakes, .good, .visit { min-height: 0; }
   .stage { max-width: 520px; }
   .sig-card, .sig-card.is-wide { grid-column: 1 / -1; }
@@ -235,7 +247,7 @@ h2 em, h1 .h1-accent { font-style: italic; color: var(--gold); }
   .item-price { font-size: 25px; }
   .visit-details dl > div { grid-template-columns: 1fr; gap: 4px; }
   .action-bar { position: fixed; inset: auto 0 0 0; z-index: 120; display: grid; grid-template-columns: 1.4fr 1fr; gap: 10px; padding: 10px 20px calc(10px + env(safe-area-inset-bottom)); background: var(--ink); border-top: 1px solid rgba(198, 169, 107, .35); }
-  .action-bar .btn { min-height: 52px; padding-inline: 14px; }
+  .action-bar .btn { padding-inline: 14px; }
   .site-footer { padding-bottom: 28px; }
 }
 
